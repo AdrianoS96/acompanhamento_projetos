@@ -13,9 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
-
-load_dotenv()
-
+from os.path import join, dirname
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'sti.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': f'{os.getenv('db')}',
-        'USER': f'{os.getenv('user')}',
-        'PASSWORD': f'{os.getenv('password')}',
-        'HOST': f'{os.getenv('url')}',
+        'NAME': f'{os.getenv("db")}',
+        'USER': f'{os.getenv("user")}',
+        'PASSWORD': f'{os.getenv("password")}',
+        'HOST': f'{os.getenv("host")}',
         'PORT': '5432',
     }
 }
